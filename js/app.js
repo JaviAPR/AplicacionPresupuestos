@@ -1,5 +1,5 @@
 const ingresos = [
-    new Ingreso('Sueldo',2000),
+    new Ingreso('Sueldo',1000),
     new Ingreso('Venta coche',1500)
 ];
 
@@ -11,6 +11,7 @@ const egresos = [
 function cargarApp(){
     cargarCabecero();
     cargarIngresos();
+    cargarEgresos();
 }
 
 function totalIngresos(){
@@ -69,4 +70,30 @@ const crearIngresoHTML = (ingreso)=>{
     </div>
 </div>`;
     return ingresoHTML;
+}
+
+const cargarEgresos = ()=>{
+    let egresosHTML = '';
+    for(let egreso of egresos){
+        egresosHTML += crearEgresoHTML(egreso);
+    }
+    console.log(egresosHTML)
+    document.getElementById('lista-egresos').innerHTML = egresosHTML;
+}
+
+const crearEgresoHTML = (egreso)=>{
+    let egresoHTML = `
+    <div class="elemento limpiarEstilos">
+    <div class="elemento_descripcion">${egreso.descripcion}</div>
+    <div class="derecha limpiarEstilos">
+        <div class="elemento_valor">- ${formatoMoneda(egreso.valor)}</div>
+        <div class="elemento_porcentaje"></div>
+        <div class="elemento_eliminar">
+            <button class="elemento_eliminar--btn">
+                <ion-icon name="close-circle-outline"></ion-icon>
+            </button>
+        </div>
+    </div>
+</div>`;
+    return egresoHTML;
 }

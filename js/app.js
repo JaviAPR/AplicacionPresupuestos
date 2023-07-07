@@ -77,17 +77,17 @@ const cargarEgresos = ()=>{
     for(let egreso of egresos){
         egresosHTML += crearEgresoHTML(egreso);
     }
-    console.log(egresosHTML)
     document.getElementById('lista-egresos').innerHTML = egresosHTML;
 }
 
 const crearEgresoHTML = (egreso)=>{
+    let porcentajeDeEgresos = egreso.valor/totalEgresos();
     let egresoHTML = `
     <div class="elemento limpiarEstilos">
     <div class="elemento_descripcion">${egreso.descripcion}</div>
     <div class="derecha limpiarEstilos">
         <div class="elemento_valor">- ${formatoMoneda(egreso.valor)}</div>
-        <div class="elemento_porcentaje"></div>
+        <div class="elemento_porcentaje">${formatoPorcentaje(porcentajeDeEgresos)}</div>
         <div class="elemento_eliminar">
             <button class="elemento_eliminar--btn">
                 <ion-icon name="close-circle-outline"></ion-icon>
